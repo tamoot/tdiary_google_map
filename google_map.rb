@@ -28,6 +28,7 @@ def google_map_common(params)
    params[:width]   ||= 320
    params[:height]  ||= 240
    params[:address] ||= nil
+   params[:type]    ||= :ROADMAP
    
    dom_id = "#{@date.strftime("%Y%m")}_#{@gmap_count}"
    params.merge!(:id => dom_id)
@@ -74,7 +75,7 @@ def google_map_script(hash)
    str << %Q|  var myOptions = {\n|
    str << %Q|        zoom: #{hash[:zoom]},\n|
    str << %Q|        center: new google.maps.LatLng(#{hash[:lat]}, #{hash[:lon]}),\n|
-   str << %Q|        mapTypeId: google.maps.MapTypeId.ROADMAP,\n|
+   str << %Q|        mapTypeId: google.maps.MapTypeId.#{hash[:type]},\n|
    str << %Q|        scaleControl: true\n|
    str << %Q|      };\n|
    str << %Q|  var gMap = new google.maps.Map(mapdiv, myOptions);\n|
@@ -113,7 +114,7 @@ def google_geomap_script(hash)
    str << %Q|        var myOptions = {\n|
    str << %Q|          zoom: #{hash[:zoom]},\n|
    str << %Q|          center: geoLat,\n|
-   str << %Q|          mapTypeId: google.maps.MapTypeId.ROADMAP,\n|
+   str << %Q|          mapTypeId: google.maps.MapTypeId.#{hash[:type]},\n|
    str << %Q|          scaleControl: true\n|
    str << %Q|        };\n|
    str << %Q|        var gMap = new google.maps.Map(mapdiv, myOptions);\n|
