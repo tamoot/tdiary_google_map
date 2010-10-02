@@ -20,6 +20,12 @@ end
 
 def google_map_common(params)
    init_gmap_data
+   if @conf.feed?
+     require 'cgi'
+     query = params[:lat] && params[:lon] ? "#{params[:lat]},#{params[:lon]}" : params[:address]
+     url = %Q|http://maps.google.com/maps?q=#{CGI::escape(query)}|
+     return "<a href=\"#{url}\">#{url}</a>"
+   end
    return 'not support this environment.' if @conf.mobile_agent?
    
    params[:zoom]    ||=  10
