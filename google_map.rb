@@ -20,7 +20,7 @@ end
 
 def google_map_common(params)
    init_gmap_data
-   if @conf.feed?
+   if feed?
      require 'cgi'
      query = params[:lat] && params[:lon] ? "#{params[:lat]},#{params[:lon]}" : params[:address]
      url = %Q|http://maps.google.com/maps?q=#{CGI::escape(query)}|
@@ -54,7 +54,7 @@ end
 add_body_leave_proc do |date|
    init_gmap_data
    gmap_scripts = ''
-   if @gmap_data.any?
+   if !feed? && @gmap_data.any?
       gmap_scripts = %Q|<script type="text/javascript">\n<!--\n|
       while @gmap_data.any?
          data = @gmap_data.shift
