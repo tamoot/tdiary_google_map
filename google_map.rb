@@ -98,9 +98,7 @@ def google_map_script(hash)
    str << %Q|      content: '<span style="color: #000000;">#{hash[:html]}</span>',\n|
    str << %Q|      size: new google.maps.Size(350, 200)\n|
    str << %Q|  });\n|
-   str << %Q|  google.maps.event.addListener(marker, 'click', function() {\n|
-   str << %Q|    infowindow.open(gMap, marker);\n|
-   str << %Q|  });\n|
+   str << %Q|  infowindow.open(gMap, marker);\n|
    end # :html
    end # :title
    str << %Q|});\n|
@@ -137,9 +135,7 @@ def google_geomap_script(hash)
    str << %Q|            content: '<span style="color: #000000;">#{hash[:html]}</span>',\n|
    str << %Q|            size: new google.maps.Size(350, 200)\n|
    str << %Q|        });\n|
-   str << %Q|        google.maps.event.addListener(marker, 'click', function() {\n|
-   str << %Q|          infowindow.open(gMap, marker);\n|
-   str << %Q|        });\n|
+   str << %Q|        infowindow.open(gMap, marker);\n|
    end # :html
    end # :title
    str << %Q|      }else{\n|
