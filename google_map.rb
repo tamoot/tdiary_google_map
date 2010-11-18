@@ -46,7 +46,9 @@ end
 
 
 add_header_proc do
-   %Q|<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=#{!@conf.iphone?.nil?}"></script>\n|
+   if /\A(?:latest|day|month|nyear)\z/ =~ @mode
+      %Q|<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=#{!@conf.iphone?.nil?}"></script>\n|
+   end
 end
 
 
